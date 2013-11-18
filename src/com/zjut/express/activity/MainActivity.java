@@ -2,8 +2,8 @@ package com.zjut.express.activity;
 
 import com.example.com.zjut.express.activity.R;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
