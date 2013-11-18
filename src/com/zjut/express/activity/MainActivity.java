@@ -9,7 +9,7 @@ import android.view.Menu;
 public class MainActivity extends Activity {
 	
 	private int i = 0;
-	private int j;
+	private int j = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
