@@ -9,7 +9,8 @@ import android.view.Menu;
 public class MainActivity extends Activity {
 	
 	private int i = 0;
-	private int j = 1;
+	private int j = 0;
+	private int k = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		System.out.println();
 		System.out.println("Hello World");
-		System.out.println(j);
+		System.out.println(k);
 	}
 
 	@Override
