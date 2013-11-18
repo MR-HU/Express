@@ -8,7 +8,7 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 	
-	private int i;
+	private int i = 0;
 	private int j;
 
 	@Override
