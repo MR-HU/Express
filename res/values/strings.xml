@@ -2,7 +2,13 @@
 <resources>
 
     <string name="app_name">快递速查</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    
+    <string name="menu_option">选择操作</string>
+    
+    <string name="express_company">快递公司:</string>
+    <string name="express_order">快递单号:</string>
+    <string name="hint_company">填入公司名字</string>
+    <string name="hint_order">填入快递单号</string>
+    <string name="search">查    询</string>
 
 </resources>
