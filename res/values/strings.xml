@@ -4,11 +4,17 @@
     <string name="app_name">快递速查</string>
     
     <string name="menu_option">选择操作</string>
+    <string name="quick_search">快速查询</string>
+    <string name="my_order">我的快递单</string>
+    <string name="all_company">快递大全</string>
+    <string name="search_history">历史记录</string>
+    <string name="more_option">更多</string>
     
     <string name="express_company">快递公司:</string>
     <string name="express_order">快递单号:</string>
     <string name="hint_company">填入公司名字</string>
     <string name="hint_order">填入快递单号</string>
     <string name="search">查    询</string>
-
+	
+    <string name="add_order">添加新的快递单</string>
 </resources>

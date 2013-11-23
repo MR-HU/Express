@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_30"
+    android:background="@drawable/app_item_selector"
+    android:paddingBottom="@dimen/padding_5"
+    android:paddingLeft="@dimen/padding_20"
+    android:paddingTop="@dimen/padding_5" >
+    <TextView
+        android:id="@+id/text_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+</FrameLayout>

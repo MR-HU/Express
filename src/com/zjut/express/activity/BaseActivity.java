@@ -1,8 +1,8 @@
 package com.zjut.express.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -20,7 +20,7 @@ import com.zjut.express.fragment.MenuListFragment;
  */
 public class BaseActivity extends SlidingFragmentActivity {
 
-	protected ListFragment listFragment;
+	protected Fragment listFragment;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class BaseActivity extends SlidingFragmentActivity {
 			t.replace(R.id.menu_frame, listFragment);
 			t.commit();
 		} else {
-			listFragment = (ListFragment) this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
+			listFragment = (Fragment) this.getSupportFragmentManager().findFragmentById(R.id.menu_frame);
 		}
 
 		SlidingMenu menu = getSlidingMenu();
@@ -43,7 +43,8 @@ public class BaseActivity extends SlidingFragmentActivity {
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		getSupportActionBar().setDisplayShowHomeEnabled(false);
+		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		getSupportActionBar().setLogo(R.drawable.separator);
 	}
 
 	@Override

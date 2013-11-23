@@ -18,11 +18,11 @@
     <!-- 淡橘色 -->
     <color name="light_orange">#936639</color>
 	<!-- 橘红色 -->
-	<color name="orange_red">#e41616</color>
+	<color name="orange_red">#E41616</color>
 	<!-- 橘色 -->
-	<color name="orange">#c26019</color>
+	<color name="orange">#C26019</color>
 	<!-- 暗黄色 -->
-	<color name="dark_yellow">#e99323</color>
+	<color name="dark_yellow">#E99323</color>
 	<!-- 红色 -->
 	<color name="red">#FF0000</color>
 	<!-- 蓝色 -->
@@ -44,8 +44,11 @@
 	<!-- 深橘色 -->
 	<color name="dark_orange">#663300</color>
 	<!-- 马鞍棕色 -->
-	<color name="saddle_brown">#8b4513</color>
+	<color name="saddle_brown">#8B4513</color>
 	<!-- 暗淡的灰色 -->
 	<color name="dim_gray">#696969</color>
 	
+	<color name="index_item_background">#9C9C9C</color>
+	<color name="index_text_background">#F0606060</color>
+	<color name="index_lay_background">#D7D7D7</color>
 </resources>

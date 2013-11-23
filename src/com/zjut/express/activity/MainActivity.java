@@ -6,6 +6,10 @@ import android.support.v4.app.FragmentManager;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.zjut.express.activity.R;
+import com.zjut.express.fragment.ExpressCompanyFragment;
+import com.zjut.express.fragment.HistorySearchFragment;
+import com.zjut.express.fragment.MoreOptionFragment;
+import com.zjut.express.fragment.OwnerOrderFragment;
 import com.zjut.express.fragment.QuickSearchFragment;
 
 /**
@@ -25,15 +29,16 @@ public class MainActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setSlidingActionBarEnabled(true);
-		
-		if (savedInstanceState != null)
+		if (savedInstanceState != null) {
 			content = getSupportFragmentManager().getFragment(savedInstanceState, "content");
-		if (content == null)
+		}
+		if (content == null) {
 			content = new QuickSearchFragment();	
-		
+		}
 		setContentView(R.layout.activity_main);
 		manager = getSupportFragmentManager();
 		manager.beginTransaction().replace(R.id.content_frame, content).commit();
+		setTitle(R.string.quick_search);
 	}
 
 	@Override
@@ -44,12 +49,24 @@ public class MainActivity extends BaseActivity {
 
 	public void changeContent(Fragment fragment) {
 		content = fragment;
-		manager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-		getSlidingMenu().showContent();
+		manager.beginTransaction().replace(R.id.content_frame, content).commit();
 		ActionBar actionBar = getSupportActionBar();
 		if (content instanceof QuickSearchFragment) {
-			actionBar.setTitle("¿ìËÙ²éÑ¯");
+			actionBar.setTitle(R.string.quick_search);
 		}
+		if (content instanceof OwnerOrderFragment) {
+			actionBar.setTitle(R.string.my_order);
+		}
+		if (content instanceof ExpressCompanyFragment) {
+			actionBar.setTitle(R.string.all_company);
+		}
+		if (content instanceof HistorySearchFragment) {
+			actionBar.setTitle(R.string.search_history);
+		}
+		if (content instanceof MoreOptionFragment) {
+			actionBar.setTitle(R.string.more_option);
+		}
+		getSlidingMenu().showContent();
 	}
 
 }

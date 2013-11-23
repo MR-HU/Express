@@ -1,7 +1,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     
     <style name="NoHomeIndicatorTheme" parent="Theme.Sherlock.Light.DarkActionBar">
-        <item name="homeAsUpIndicator">@null</item>
+        <item name="homeAsUpIndicator">@drawable/slide_menu_operation</item>
     </style>
     
     <style name="TextBlackCenter15">

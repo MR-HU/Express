@@ -5,10 +5,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,13 +27,17 @@ import com.zjut.express.activity.R;
  * @version 1.0.0
  */
 @SuppressLint("Recycle")
-public class MenuListFragment extends ListFragment {
+public class MenuListFragment extends Fragment implements OnItemClickListener {
 	
 	private String[] titles;
 	private TypedArray icons;
+	private ListView listView;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.slide_menu_list, null);
+		View view = inflater.inflate(R.layout.slide_menu_list, null);
+		listView = (ListView) view.findViewById(R.id.slide_menu_listview);
+		listView.setOnItemClickListener(this);
+		return view; 
 	}
 
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -44,7 +49,7 @@ public class MenuListFragment extends ListFragment {
 			MenuItem item = new MenuItem(titles[i], icons.getResourceId(i, 0));
 			adapter.add(item);
 		}
-		setListAdapter(adapter);
+		listView.setAdapter(adapter);
 	}
 
 	public class SimpleAdapter extends ArrayAdapter<MenuItem> {
@@ -77,9 +82,18 @@ public class MenuListFragment extends ListFragment {
 		}
 	}
 
+	private void changeFragment(Fragment fragment) {
+		if (getActivity() == null) {
+			return;
+		}
+		if (getActivity() instanceof MainActivity) {
+			MainActivity main = (MainActivity) getActivity();
+			main.changeContent(fragment);
+		}
+	}
+
 	@Override
-	public void onListItemClick(ListView listView, View view, int position, long id) {
-		super.onListItemClick(listView, view, position, id);
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Fragment content = null;
 		switch (position) {
 		case 0:
@@ -100,16 +114,6 @@ public class MenuListFragment extends ListFragment {
 		}
 		if (content != null) {
 			changeFragment(content);
-		}
-	}
-
-	private void changeFragment(Fragment fragment) {
-		if (getActivity() == null) {
-			return;
-		}
-		if (getActivity() instanceof MainActivity) {
-			MainActivity main = (MainActivity) getActivity();
-			main.changeContent(fragment);
 		}
 	}
 	
