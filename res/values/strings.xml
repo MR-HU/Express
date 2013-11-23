@@ -12,9 +12,10 @@
     
     <string name="express_company">快递公司:</string>
     <string name="express_order">快递单号:</string>
-    <string name="hint_company">填入公司名字</string>
+    <string name="hint_company">选择快递公司</string>
     <string name="hint_order">填入快递单号</string>
     <string name="search">查    询</string>
+    <string name="search_tip">信息不完整</string>
 	
     <string name="add_order">添加新的快递单</string>
 </resources>

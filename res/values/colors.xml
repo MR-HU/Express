@@ -51,4 +51,5 @@
 	<color name="index_item_background">#9C9C9C</color>
 	<color name="index_text_background">#F0606060</color>
 	<color name="index_lay_background">#D7D7D7</color>
+	<color name="dialog_company_item_click">#FFDDDCD7</color>
 </resources>
