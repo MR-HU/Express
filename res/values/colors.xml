@@ -47,9 +47,27 @@
 	<color name="saddle_brown">#8B4513</color>
 	<!-- 暗淡的灰色 -->
 	<color name="dim_gray">#696969</color>
+	<!-- 淡灰色 -->
+	<color name="mlight_gray">#D3D3D3</color>
+	<!-- 银灰色 -->
+	<color name="sliver">#C0C0C0</color>
+	<!-- 亮钢蓝 -->
+	<color name="light_steel_blue">#B0C4DE</color>
+	<!-- 古董白 -->
+	<color name="antigue_white">#FAEBD7</color>
+	<!-- 薄雾玫瑰 -->
+	<color name="misty_rose">#FFE4E1</color>
+	<!-- 庚斯博罗灰色 -->
+	<color name="gainsboro">#DCDCDC</color>
+	<!-- 蜜瓜色 -->
+	<color name="honey_dew">#F0FFF0</color>
+	<!-- 浅灰 -->
+	<color name="dight_grey">#D7D7D7</color>
+	<!-- 发白的杏仁色 -->
+	<color name="bianched_almond">#FFEBCD</color>
+	<!-- 陶坯黄 -->
+	<color name="bisque">#FFE4C4</color>
+	<!-- 略灰 -->
+	<color name="yight_grey">#FFDDDCD7</color>
 	
-	<color name="index_item_background">#9C9C9C</color>
-	<color name="index_text_background">#F0606060</color>
-	<color name="index_lay_background">#D7D7D7</color>
-	<color name="dialog_company_item_click">#FFDDDCD7</color>
 </resources>

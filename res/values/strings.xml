@@ -17,5 +17,7 @@
     <string name="search">查    询</string>
     <string name="search_tip">信息不完整</string>
 	
+    <string name="search_result">查询结果</string>
+    
     <string name="add_order">添加新的快递单</string>
 </resources>

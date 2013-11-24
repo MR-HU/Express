@@ -8,7 +8,7 @@ import android.webkit.WebView;
 import com.actionbarsherlock.app.SherlockActivity;
 
 /**
- * 快速查询结果页面
+ * 快速查询结果页面(HTML5页面)
  * 
  * @author HuGuojun
  * @date 2013-11-24 上午12:37:25
@@ -28,9 +28,6 @@ public class SearchResultActivity extends SherlockActivity {
 		if (bundle != null) {
 			code = bundle.getString("code");
 			num = bundle.getString("num");
-		} else {
-			code = "shunfeng";
-			num = "117839619182";
 		}
 		initView();
 	}
@@ -43,7 +40,6 @@ public class SearchResultActivity extends SherlockActivity {
 		sets.setBuiltInZoomControls(false);
 		String url = "http://m.kuaidi100.com/index_all.html?type=company&postid=order";
 		url = url.replace("company", code).replace("order", num);
-		System.out.println(url);
 		webView.loadUrl(url);
 	}
 	
@@ -57,5 +53,4 @@ public class SearchResultActivity extends SherlockActivity {
 	}   
 }
 
-//http://m.kuaidi100.com/index_all.html?type=shunfeng&postid=117839619182
 
