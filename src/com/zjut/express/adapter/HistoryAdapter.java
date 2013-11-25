@@ -35,6 +35,11 @@ public class HistoryAdapter extends BaseAdapter {
 		this.data = data;
 	}
 	
+	public void deleteItem(History record) {
+		data.remove(record);
+		notifyDataSetChanged();
+	}
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = null;
@@ -53,13 +58,13 @@ public class HistoryAdapter extends BaseAdapter {
 		final History record = data.get(position);
 		holder.dateView.setText(record.getDate());
 		holder.timeView.setText(record.getTime());
-		holder.orderView.setText(record.getOrder());
+		holder.orderView.setText("单号:" + record.getOrder());
 		holder.nameView.setText(record.getName());
 		holder.deleteBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if(deleteListener != null) {
-					deleteListener.onDelete(record.getOrder());
+					deleteListener.onDelete(record);
 				}
 			}
 		});
@@ -93,7 +98,7 @@ public class HistoryAdapter extends BaseAdapter {
 	 * 回调接口,处理删除按钮事件
 	 */
 	public interface OnDeleteListener {
-		void onDelete(String order);
+		void onDelete(History record);
 	}
 	
 	private OnDeleteListener deleteListener;

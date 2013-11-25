@@ -67,7 +67,23 @@ public class DBManager {
 		ContentValues values = new ContentValues();
 		values.put("_date", record.getDate());
 		values.put("_time", record.getTime());
-		db.update("history", values, "_order = ?", new String[]{record.getOrder()});
+		db.update("history", values, "_order = ? and _code = ?", new String[]{record.getOrder(), record.getCode()});
+	}
+	
+	/**
+	 * 订单号和公司代码可以确定记录唯一<br>
+	 * 如果记录存在则更新<br>
+	 * 如果不存在插入
+	 * @param order 
+	 * @return void
+	 */
+	public void saveOrUpdate(History record) {
+		History history = query(record.getOrder(), record.getCode());
+		if (history == null) {
+			add(record);
+		} else {
+			update(record);
+		}
 	}
 	
 	/**
@@ -76,17 +92,17 @@ public class DBManager {
 	 * @return void
 	 */
 	public void delete(History record) {
-		db.delete("history", "_order = ?", new String[]{record.getOrder()});
+		db.delete("history", "_order = ? and _code = ?", new String[]{record.getOrder(), record.getCode()});
 	}
 	
 	/**
-	 * 查询指定单号的一条记录
+	 * 查询某一条记录
 	 * @param order
 	 * @return History
 	 */
-	public History query(String order) {
-		History record =null;
-		Cursor cursor = db.rawQuery("SELECT * FROM history WHERE _order = ?", new String[]{order});
+	public History query(String order, String code) {
+		History record = null;
+		Cursor cursor = db.rawQuery("SELECT * FROM history WHERE _order = ? and _code = ?", new String[]{order, code});
 		while (cursor.moveToNext()) {
 			record = new History();
 			record.setDate(cursor.getString(cursor.getColumnIndex("_date")));

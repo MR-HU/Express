@@ -9,7 +9,10 @@ import com.zjut.express.activity.NormalResultActivity;
 import com.zjut.express.activity.R;
 import com.zjut.express.activity.SearchResultActivity;
 import com.zjut.express.adapter.CompanyAdapter;
+import com.zjut.express.db.DBManager;
 import com.zjut.express.entity.Company;
+import com.zjut.express.entity.History;
+import com.zjut.express.util.CalendaUtil;
 import com.zjut.express.util.HttpPostRequest;
 import com.zjut.express.util.Util;
 
@@ -46,7 +49,8 @@ import android.widget.LinearLayout.LayoutParams;
 public class QuickSearchFragment extends Fragment implements OnClickListener {
 
 	private String code = "";
-	private String num = "";
+	private String order = "";
+	private String name = "";
 	private List<Company> data;
 	private Dialog dialog;
 	private Button searchButton;
@@ -139,21 +143,39 @@ public class QuickSearchFragment extends Fragment implements OnClickListener {
 			public void onItemClick(AdapterView<?> parent, View item, int position, long id) {
 				Company company = data.get(position);
 				code = company.getCode();
-				nameText.setText(company.getName());
+				name = company.getName();
+				nameText.setText(name);
 				dialog.cancel();
 			}
 		});
 	}
 	
 	private void handleSearch() {
-		num = numText.getText().toString();
-		if (code.equals("") || num.equals("")) {
+		order = numText.getText().toString();
+		if (code.equals("") || order.equals("")) {
 			Toast.makeText(getActivity(), R.string.search_tip, Toast.LENGTH_LONG).show();
-			return;
-		} 
-		if (task != null) task.cancel(true);
-		task = new GetDataTask();
-		task.execute();
+		} else {
+			saveSearchRecord();
+			if (task != null) task.cancel(true);
+			task = new GetDataTask();
+			task.execute();
+		}
+	}
+
+	/**
+	 * 保存当条查询记录
+	 * @return void
+	 */
+	private void saveSearchRecord() {
+		History record = new History();
+		record.setDate(CalendaUtil.GetCurrentDate());
+		record.setTime(CalendaUtil.GetCurrentTime());
+		record.setCode(code);
+		record.setOrder(order);
+		record.setName(name);
+		DBManager manager = new DBManager(getActivity());
+		manager.saveOrUpdate(record);
+		manager.close();
 	}
 
 	private class GetDataTask extends AsyncTask<Void, Void, String> {
@@ -162,7 +184,7 @@ public class QuickSearchFragment extends Fragment implements OnClickListener {
 		protected String doInBackground(Void... params) {
 			String url = "http://api.kuaidi100.com/api?id=cd0c64583bf91a80&" +
 					"com=company&nu=order&valicode=o&show=0&muti=1&order=desc";
-			url = url.replace("company", code).replace("order", num);
+			url = url.replace("company", code).replace("order", order);
 			return HttpPostRequest.getDataFromWebServer(url);
 		}
 
@@ -171,23 +193,28 @@ public class QuickSearchFragment extends Fragment implements OnClickListener {
 			super.onPostExecute(result);
 			try {
 				JSONObject object = new JSONObject(result);
-				String status = object.optString("status");
+				int status = Integer.parseInt(object.optString("status"));
 				//status为0表示物流单暂无结果,为1表示查询成功,为2表示接口异常
-				if (status.equals("0")) {
+				switch (status) {
+				case 0:
 					Toast.makeText(getActivity(), object.optString("message"), Toast.LENGTH_LONG).show();
-				} else if (status.equals("1")) {
-					Intent intent = new Intent(getActivity(), NormalResultActivity.class);
-					intent.putExtra("json", result);
-					startActivity(intent);
-				} else if (status.equals("2")) {
+					break;
+				case 1:
+					Intent intente = new Intent(getActivity(), NormalResultActivity.class);
+					intente.putExtra("json", result);
+					startActivity(intente);
+					break;
+				case 2:
 					Intent intent = new Intent(getActivity(), SearchResultActivity.class);
 					intent.putExtra("code", code);
-					intent.putExtra("num", num);
+					intent.putExtra("order", order);
 					startActivity(intent);
-				} else {}
+					break;
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
+	
 }

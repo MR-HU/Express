@@ -1,7 +1,5 @@
 package com.zjut.express.util;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -68,82 +66,6 @@ public class Util {
 	 */
 	public boolean hasExternalCacheDir() {
 		return Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;
-	}
-	
-	/**
-	 * 这个方法主要是在下载网络图片时简单的处理一下缓存文件名称<br>
-	 * <br>字符串转换
-	 * @param str 需要转换的字符
-	 * @return 转换的字符(大写)
-	 */
-	public static String convertStr(String str){
-		String lowerStr = "";
-		try {
-			lowerStr = str.toLowerCase().replace("http://", "");
-			lowerStr = lowerStr.substring(lowerStr.indexOf("/"), lowerStr.length());
-			return lowerStr.replace("/", "")
-					.replace("images", "")
-					.replace("image", "")
-					.replace(":", "")
-					.replace(".", "")
-					.replace("-", "")
-					.replace("jpg", "")
-					.replace("png", "").toUpperCase().trim() + CACHESUFFIX;
-		} catch (Exception e) {
-			lowerStr = "cachetemp" + CACHESUFFIX;
-		}
-		return lowerStr;
-	}
-	
-	public static String getFormatDate(String strTime) {
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
-		 Date date = null;
-		 String result = "";
-		try {
-			if(strTime == null){
-				result = "";
-			}else{
-				date = sdf.parse(strTime);
-				result = sdf.format(date); 
-			}
-		} catch (Exception e) {
-			result = strTime;
-		}
-		return (result.equalsIgnoreCase("null") || result == null) ? "" : result;
-	}
-   
-	public static String getFormatTimeMM(String strTime) {
-		 SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss"); 
-		 Date date = null;
-		 String result = "";
-		try {
-			if(strTime == null){
-				result = "";
-			}else{
-				date = sdf.parse(strTime);
-				result = sdf.format(date); 
-			}
-		} catch (Exception e) {
-			result = strTime;
-		}
-		return (result.equalsIgnoreCase("null") || result == null) ? "" : result;
-	}
-	
-	public static String getFormatTime(String strTime) {
-		 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-		 Date date = null;
-		 String result = "";
-		try {
-			if(strTime == null){
-				result = "";
-			}else{
-				date = sdf.parse(strTime);
-				result = sdf.format(date); 
-			}
-		} catch (Exception e) {
-			result = strTime;
-		}
-		return (result.equalsIgnoreCase("null")||result==null)?"":result;
 	}
 	
 	/**

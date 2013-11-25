@@ -69,17 +69,22 @@ public class HistorySearchFragment extends Fragment implements OnItemClickListen
 	private class DeleteListener implements OnDeleteListener {
 
 		@Override
-		public void onDelete(String order) {
-			Toast.makeText(getActivity(), order, Toast.LENGTH_LONG).show();
+		public void onDelete(History record) {
+			DBManager manager = new DBManager(getActivity());
+			manager.delete(record);
+			manager.close();
+			adapter.deleteItem(record);
+			Toast.makeText(getActivity(), R.string.delete_success, Toast.LENGTH_LONG).show();
 		}
 		
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		History record = (History) adapter.getItem(position);
 		Intent intent = new Intent(getActivity(), SearchResultActivity.class);
-		intent.putExtra("code", "shunfeng");
-		intent.putExtra("num", "117839619182");
+		intent.putExtra("code", record.getCode());
+		intent.putExtra("order", record.getOrder());
 		startActivity(intent);
 	}
 

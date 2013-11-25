@@ -22,5 +22,6 @@
     <string name="add_order">添加新的快递单</string>
     
     <string  name="no_history_record">暂无历史查询记录</string>
+    <string  name="delete_success">删除成功</string>
     
 </resources>

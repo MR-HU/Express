@@ -18,7 +18,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 public class SearchResultActivity extends SherlockActivity {
 
 	private WebView webView;
-	private String code, num;
+	private String code, order;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class SearchResultActivity extends SherlockActivity {
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			code = bundle.getString("code");
-			num = bundle.getString("num");
+			order = bundle.getString("order");
 		}
 		initView();
 	}
@@ -39,7 +39,7 @@ public class SearchResultActivity extends SherlockActivity {
 		sets.setSupportZoom(false);
 		sets.setBuiltInZoomControls(false);
 		String url = "http://m.kuaidi100.com/index_all.html?type=company&postid=order";
-		url = url.replace("company", code).replace("order", num);
+		url = url.replace("company", code).replace("order", order);
 		webView.loadUrl(url);
 	}
 	
